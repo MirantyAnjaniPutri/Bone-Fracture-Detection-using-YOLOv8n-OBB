@@ -36,22 +36,22 @@ def main():
     model_ori = YOLO(model_weights_ori)
     model_histo = YOLO(model_weights_histo)
 
-    # image_path_ori = "C:/Users/miran/code_skripsi/yolo/datasets/test/images/28_jpg.rf.e94435d98cb556f0a56cff1d7dd9b920.jpg"
-    # image_path_histo = "C:/Users/miran/code_skripsi/yolo/hist_datasets/test/images/28_jpg.rf.e94435d98cb556f0a56cff1d7dd9b920.jpg"
+    image_path_ori = "C:/Users/miran/code_skripsi/yolo/datasets/test/images/28_jpg.rf.e94435d98cb556f0a56cff1d7dd9b920.jpg"
+    image_path_histo = "C:/Users/miran/code_skripsi/yolo/hist_datasets/test/images/28_jpg.rf.e94435d98cb556f0a56cff1d7dd9b920.jpg"
 
-    # # New image paths
-    # image_path_ori_copy = "C:/Users/miran/code_skripsi/yolo/datasets/test/images/28_jpg.rf.e94435d98cb556f0a56cff1d7dd9b920-copy.jpg"
-    # image_path_histo_copy = "C:/Users/miran/code_skripsi/yolo/hist_datasets/test/images/28_jpg.rf.e94435d98cb556f0a56cff1d7dd9b920-copy.jpg"
+    # New image paths
+    image_path_ori_copy = "C:/Users/miran/code_skripsi/yolo/datasets/test/images/28_jpg.rf.e94435d98cb556f0a56cff1d7dd9b920-copy.jpg"
+    image_path_histo_copy = "C:/Users/miran/code_skripsi/yolo/hist_datasets/test/images/28_jpg.rf.e94435d98cb556f0a56cff1d7dd9b920-copy.jpg"
 
-    # # Copy the original images to new filenames
-    # shutil.copy(image_path_ori, image_path_ori_copy)
-    # shutil.copy(image_path_histo, image_path_histo_copy)
+    # Copy the original images to new filenames
+    shutil.copy(image_path_ori, image_path_ori_copy)
+    shutil.copy(image_path_histo, image_path_histo_copy)
 
-    # # Perform object detection on the image
-    # results_1 = model_ori.predict(image_path_ori, save=True, conf=0.3)
-    # results_2 =  model_ori.predict(image_path_histo, save=True, conf=0.3)
-    # results_3 = model_histo.predict(image_path_ori_copy, save=True, conf=0.3)
-    # results_4 = model_histo.predict(image_path_histo_copy, save=True, conf=0.3)
+    # Perform object detection on the image
+    results_1 = model_ori.predict(image_path_ori, save=True, save_dir='/predict_1', conf=0.3)
+    results_2 =  model_ori.predict(image_path_histo, save=True, save_dir='/predict_2', conf=0.3)
+    results_3 = model_histo.predict(image_path_ori_copy, save=True, save_dir='/predict_1', conf=0.3)
+    results_4 = model_histo.predict(image_path_histo_copy, save=True, save_dir='/predict_2', conf=0.3)
 
     # # Run batched inference on a list of images
     # results = model_ori(["C:/Users/miran/code_skripsi/yolo/datasets/test/images/28_jpg.rf.e94435d98cb556f0a56cff1d7dd9b920.jpg",
@@ -59,25 +59,25 @@ def main():
     # results_histo = model_histo(["C:/Users/miran/code_skripsi/yolo/datasets/test/images/28_jpg.rf.e94435d98cb556f0a56cff1d7dd9b920.jpg",
     #                      "C:/Users/miran/code_skripsi/yolo/hist_datasets/test/images/28_jpg.rf.e94435d98cb556f0a56cff1d7dd9b920.jpg"])
 
-     # Define image paths for both datasets
-    image_paths_ori = [
-        "C:/Users/miran/code_skripsi/yolo/datasets/test/images/28_jpg.rf.e94435d98cb556f0a56cff1d7dd9b920.jpg",
-        # Add more image paths from the original dataset if needed
-    ]
-    image_paths_histo = [
-        "C:/Users/miran/code_skripsi/yolo/hist_datasets/test/images/28_jpg.rf.e94435d98cb556f0a56cff1d7dd9b920.jpg",
-        # Add more image paths from the histogram equalized dataset if needed
-    ]
+    #  # Define image paths for both datasets
+    # image_paths_ori = [
+    #     "C:/Users/miran/code_skripsi/yolo/datasets/test/images/28_jpg.rf.e94435d98cb556f0a56cff1d7dd9b920.jpg",
+    #     # Add more image paths from the original dataset if needed
+    # ]
+    # image_paths_histo = [
+    #     "C:/Users/miran/code_skripsi/yolo/hist_datasets/test/images/28_jpg.rf.e94435d98cb556f0a56cff1d7dd9b920.jpg",
+    #     # Add more image paths from the histogram equalized dataset if needed
+    # ]
 
-    # Concatenate the image paths
-    all_image_paths = image_paths_ori + image_paths_histo
+    # # Concatenate the image paths
+    # all_image_paths = image_paths_ori + image_paths_histo
 
-    # Perform batched inference on all images
-    results_ori = model_ori(all_image_paths)  # Batched inference with model_ori
-    results_histo = model_histo(all_image_paths)  # Batched inference with model_histo
+    # # Perform batched inference on all images
+    # results_ori = model_ori(all_image_paths)  # Batched inference with model_ori
+    # results_histo = model_histo(all_image_paths)  # Batched inference with model_histo
 
-    # Display the results for both datasets
-    display_results(results_ori, results_histo)
+    # # Display the results for both datasets
+    # display_results(results_ori, results_histo)
 
     # # Process results list
     # for result in results_ori:
